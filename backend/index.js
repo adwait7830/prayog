@@ -10,4 +10,5 @@ server.use("/", require("./routes/routes.js"))
 
 server.listen(port,() => {
     console.log(`Server is running!! on port ${port}`)
+    connectDb();
 });

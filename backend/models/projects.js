@@ -4,30 +4,32 @@ const projectSchema = mongoose.schema({
 
     Title : {
         type: String,
-        required : [true, "Please add the Title of the Project."]
+        required : true
     },
 
     Description : {
         type:String ,
-        required : [true, "Please add the Description of the Project."]
+        required : true
     },
 
     CoverImage : {
         type:String,
-        required : [true, "Please add the CoverImage of the Project."]
+        required : true
     },
 
-    Stream : {
+    Category : {
         type:String,
-        required : [true, "Please add the Title of the Project."]
+        required : true
     },
 
     views : {
         type:Number,
+        default : 0
     },
 
     Img1 : {
         type:String,
+        
     },
 
     Img2 : {
@@ -52,17 +54,17 @@ const projectSchema = mongoose.schema({
 
     Summary : {
         type:Text,
-        required : [true, "Please add the Summary of the Project."]
+        required : true
     }, 
 
     OwnerName : {
         type: String,
-        required : [true, "Please add name of Owner of the Project."]
+        required : true
     },
 
     OwnerCollege : {
         type:Text,
-        required : [true, "Please add your College."]
+        required : true
     },
 
 },  {    
