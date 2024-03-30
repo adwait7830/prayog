@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from './themeSlice';
-import userReducer from './userSlice';
+import studentReducer from './studentSlice';
+import instituteReducer from './instituteSlice';
+import adminReducer from './adminSlice'
 const store =  configureStore({
     reducer:{
         theme:themeReducer,
-        user:userReducer
+        admin:adminReducer,
+        student:studentReducer,
+        institute:instituteReducer
     }
-
 })
 export default store;
 export type RootState = ReturnType<typeof store.getState>;

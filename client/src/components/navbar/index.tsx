@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { BiLogIn, BiLogOut } from 'react-icons/bi'
 import { useDispatch, useSelector } from "react-redux"
 import { toggleTheme } from "../../redux/themeSlice";
 import { useEffect, useState } from "react";
-import { logout } from "../../redux/userSlice";
 import { RootState } from "../../redux/store";
 import toast from "react-hot-toast";
+import { adminLogout } from "../../redux/adminSlice";
+import { instituteLogout } from "../../redux/instituteSlice";
+import { studentLogout } from "../../redux/studentSlice";
 const Navbar = () => {
     const darkTheme = useSelector((state: RootState) => state.theme.darkTheme);
-    const logged = useSelector((state: RootState) => state.user.logged)
+    const studentLogged = useSelector((state: RootState) => state.student.logged);
+    const instituteLogged = useSelector((state: RootState) => state.institute.logged);
+    const adminLogged = useSelector((state: RootState) => state.admin.logged)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const toggleDarkTheme = () => {
         dispatch(toggleTheme())
     }
@@ -17,7 +22,10 @@ const Navbar = () => {
         toast.loading('Logging Out');
         setTimeout(() => {
             toast.dismiss();
-            dispatch(logout())
+            dispatch(instituteLogout());
+            dispatch(studentLogout());
+            dispatch(adminLogout());
+            navigate('/')
             toast.success("Logged Out")
         }, 3000);
     }
@@ -61,15 +69,15 @@ const Navbar = () => {
                         <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/projects'>Projects</Link>
                         <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/workshops'>Workshops</Link>
                         <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/about'>About</Link>
-                        {logged ? <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/profile'>Profile</Link> : null}
+                        {studentLogged || instituteLogged ? <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/profile'>Profile</Link> : null}
+                        {adminLogged ? <Link className='hover:bg-sky-300  dark:hover:bg-purple-700 py-1 px-2 rounded-md ' to='/admin'>Admin</Link> : null}
                         {
-                            logged
-                                ? <Link
+                            adminLogged || studentLogged || instituteLogged
+                                ? <button
                                     onClick={handelLogout}
-                                    to='/'
                                     className='flex gap-1 items-center hover:bg-red-500 py-1 px-2 rounded-md '>
                                     <p className="m-0 hidden md:inline">Logout</p><BiLogOut size={25} />
-                                </Link>
+                                </button>
                                 : <Link
                                     to='auth/login'
                                     className='flex gap-1 items-center hover:bg-green-500 py-1 px-2 rounded-md '>
@@ -126,9 +134,10 @@ const Navbar = () => {
                         <Link to='/projects'>Projects</Link>
                         <Link to='/workshops'>Workshops</Link>
                         <Link to='/about'>About</Link>
-                        {logged ? <Link to='/profile'>Profile</Link> : null}
+                        {studentLogged || instituteLogged ? <Link to='/profile'>Profile</Link> : null}
+                        {adminLogged ? <Link to='/admin'>Admin</Link> : null}
                         {
-                            logged
+                            adminLogged || studentLogged || instituteLogged
                                 ? <Link
                                     onClick={handelLogout}
                                     to='/'

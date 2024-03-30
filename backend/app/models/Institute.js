@@ -10,11 +10,6 @@ const InstituteSchema = new Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
     password: {
         type: String,
         default: 'General'
@@ -26,6 +21,10 @@ const InstituteSchema = new Schema({
     students:{
         type: Number,
         default: 0
+    },
+    verified: {
+        type: Boolean,
+        default: false
     },
     date: {
         type: Date,

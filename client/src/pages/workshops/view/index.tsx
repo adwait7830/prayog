@@ -15,7 +15,7 @@ const View = () => {
               <div className="flex justify-end items-top relative top-[-10px] right-[-10px] z-10 ">
                 <p className="m-0 p-1 bg-blue-500 rounded-bl-xl shadow font-medium hover:scale-105 transition-transform cursor-pointer">Electronics</p>
               </div>
-              <img className="relative top-[-40px] right-[-8px]" src="/images/workshop.jpg"  alt="..." />
+              <img className="relative top-[-40px] right-[-8px]" src="/images/workshop.jpg" alt="..." />
             </div>
             <div className="md:order-1">
               <div className="card-body">
@@ -31,7 +31,6 @@ const View = () => {
                 </a>
               </div>
             </div>
-
           </article>
         ))}
       </section>

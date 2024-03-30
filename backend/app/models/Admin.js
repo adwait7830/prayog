@@ -6,6 +6,10 @@ const AdminSchema = new Schema({
         type: String,
         required: true
     },
+    email:{
+        type: String,
+        required: true
+    },
     password: {
         type: String,
         default: 'General'
@@ -14,7 +18,6 @@ const AdminSchema = new Schema({
         type: Date,
         default: Date.now
     }
-
 });
 
-module.exports = mongoose.model('users',AdminSchema);
+module.exports = mongoose.model('admin',AdminSchema);
