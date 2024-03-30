@@ -17,10 +17,10 @@ router.post('/student/register', [
 ], async (req, res) => {
     const error = validationResult(req);
     if (!error.isEmpty()) {
-        res.status(400).send({ success: false, error: "Invalid Field Entry" });
+        res.status(400).send({ success: false, error: error.errors[0].msg });
         return;
     }
-    try {
+    try { 
         const student = await Student.findOne({ email: req.body.email });
         if (student) {
             res.status(400).send({ success: false, error: 'Email Already Exists' });

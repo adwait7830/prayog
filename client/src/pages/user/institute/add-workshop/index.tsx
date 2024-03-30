@@ -29,6 +29,7 @@ async function processFiles(files: FileObject[]): Promise<ArrayBuffer[]> {
   );
   return fileBufferArray;
 }
+console.log(processFiles);
 
 export default function AddWorkshop() {
   const navigate = useNavigate();
