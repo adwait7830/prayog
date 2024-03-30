@@ -40,7 +40,7 @@ router.post('/student/register', [
             res.json({ success: true });
         }
     } catch (error) {
-        console.log(error.message)
+        console.log(error)
         res.json({ success: false, error: 'Server Error' });
     }
 })
