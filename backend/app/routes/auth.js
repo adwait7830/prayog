@@ -16,6 +16,7 @@ router.post('/student/register', [
     body('password', 'Invalid Password').notEmpty().isAlphanumeric().isLength({ min: 8 }),
 ], async (req, res) => {
     const error = validationResult(req);
+    console.log('registration initiated');
     if (!error.isEmpty()) {
         res.status(400).send({ success: false, error: error.errors[0].msg });
         return;
